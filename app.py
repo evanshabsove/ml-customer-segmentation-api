@@ -15,7 +15,6 @@ model = None
 scaler = None
 
 def load_model():
-    """Load the trained model and scaler if they exist"""
     global model, scaler
 
     try:
@@ -35,16 +34,13 @@ def load_model():
         print(f"Error loading model/scaler: {str(e)}")
 
 def preprocess_data(data):
-    """Preprocess input data for model prediction"""
-    # First, encode gender to numeric value
+    # encode gender to numeric value
     gender_str = str(data['gender']).strip().lower()
     if gender_str in ['female', 'f']:
         gender_encoded = 0
     elif gender_str in ['male', 'm']:
         gender_encoded = 1
 
-    # Create features in the correct order: [gender_enc, age, annual_income_k, spending_score]
-    # Note: annual_income should already be in thousands to match training data
     features = np.array([
         gender_encoded,
         float(data['age']),
@@ -60,7 +56,6 @@ def preprocess_data(data):
 
 @app.route('/', methods=['GET'])
 def health_check():
-    """Health check endpoint"""
     model_status = "loaded" if model is not None else "not loaded"
     scaler_status = "loaded" if scaler is not None else "not loaded"
     
@@ -74,7 +69,6 @@ def health_check():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    """Prediction endpoint"""
     try:
         # Check if model is loaded
         if model is None:
@@ -129,7 +123,7 @@ def predict():
         }), 500
 
 def get_segment_name(segment_id):
-    """Map segment ID to human-readable name based on analysis in ipynb file"""
+    # Map segment ID to human-readable name based on analysis in ipynb file
     segment_names = {
         0: "Affluent Male Spenders",           # High income men who spend heavily
         1: "Moderate Lifestyle Women",        # Older women, balanced spending
