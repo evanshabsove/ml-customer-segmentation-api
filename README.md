@@ -42,7 +42,7 @@ Makes a customer segmentation prediction based on input parameters.
     "customer_id": "12345",
     "prediction": {
         "segment": 3,
-        "segment_name": "High Income, High Spending",
+        "segment_name": "Young Female Shoppers",
         "confidence": [0.1, 0.2, 0.1, 0.6, 0.0]
     },
     "input_data": {
@@ -54,12 +54,6 @@ Makes a customer segmentation prediction based on input parameters.
     "timestamp": "2025-08-08T10:30:00.123456"
 }
 ```
-
-### Model Reload
-```
-POST /model/reload
-```
-Reloads the machine learning model and scaler from disk.
 
 ## Setup
 
