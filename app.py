@@ -7,8 +7,9 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Configuration
-MODEL_PATH = 'models/customer_segmentation_model.pkl'
-SCALER_PATH = 'models/scaler.pkl'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, 'models', 'customer_segmentation_model.pkl')
+SCALER_PATH = os.path.join(BASE_DIR, 'models', 'scaler.pkl')
 
 # Global variables for model and scaler (will be loaded when available)
 model = None
