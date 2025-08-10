@@ -154,5 +154,6 @@ def method_not_allowed(error):
 if __name__ == '__main__':
     # Try to load model on startup
     load_model()
-    # Run the app
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    # Run the app - get port from Railway environment
+    port = int(os.environ.get('PORT', 8080))
+    app.run(debug=False, host='0.0.0.0', port=port)
