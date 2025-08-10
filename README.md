@@ -133,9 +133,20 @@ The API includes comprehensive error handling for:
 - Invalid HTTP methods
 - Non-existent endpoints
 
-## Production Deployment
+## Production Testing
 
-For production deployment, use gunicorn:
 ```bash
-gunicorn -w 4 -b 0.0.0.0:8080 app:app
+# Health check
+curl -X GET https://ml-customer-segmentation-api-production.up.railway.app
+
+# Make a prediction
+curl -X POST https://ml-customer-segmentation-api-production.up.railway.app/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customer_id": "12345",
+    "gender": "Female",
+    "age": 35,
+    "annual_income": 50,
+    "spending_score": 75
+  }'
 ```
